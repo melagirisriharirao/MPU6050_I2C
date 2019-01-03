@@ -17,7 +17,7 @@
 #include "uartHeader.h"
 #include "mpu6050.h"
 
-#define MPU_6050			0x68
+#define MPU_6050		0x68
 #define MPU_6050_WRITE_ADDR	0xD0
 #define MPU_6050_READ_ADDR	0xD1
 
@@ -105,7 +105,7 @@ int main(void){
 		Yg = gyroY/16.4;
 		Zg = gyroZ/16.4;
 
-		t = (temperature/340.00)+36.53;					/* Convert temperature in °/c using formula */		
+		t = (temperature/340.00)+36.53;					/* Convert temperature in Â°/c using formula */		
 		
 		dtostrf( Xa, 3, 2, float_ );					/* Take values in buffer to send all parameters over USART */
 		sprintf(buffer," Ax = %s g\t", float_);
