@@ -27,31 +27,31 @@ float temperature = 0.0;
 float gyroX = 0.0, gyroY = 0.0, gyroZ = 0.0;
 int returnValue = 0;
 
-void mpu6050Init(){											/* Gyro initialization function */
+void mpu6050Init(){								/* Gyro initialization function */
 	
-	_delay_ms(150);											/* Power up time >100ms */
+	_delay_ms(150);								/* Power up time >100ms */
 	i2cMasterStart(MPU_6050_WRITE_ADDR);					/* Start with device write address */
-	i2cMasterSend(SMPLRT_DIV);								/* Write to sample rate register */
-	i2cMasterSend(0x07);									/* 1KHz sample rate */
+	i2cMasterSend(SMPLRT_DIV);						/* Write to sample rate register */
+	i2cMasterSend(0x07);							/* 1KHz sample rate */
 	i2cMasterStop();
 
 	i2cMasterStart(MPU_6050_WRITE_ADDR);
-	i2cMasterSend(PWR_MGMT_1);								/* Write to power management register */
-	i2cMasterSend(0x01);									/* X axis gyroscope reference frequency */
+	i2cMasterSend(PWR_MGMT_1);						/* Write to power management register */
+	i2cMasterSend(0x01);							/* X axis gyroscope reference frequency */
 	i2cMasterStop();
 
 	i2cMasterStart(MPU_6050_WRITE_ADDR);
-	i2cMasterSend(CONFIG);									/* Write to Configuration register */
-	i2cMasterSend(0x00);									/* Fs = 8KHz */
+	i2cMasterSend(CONFIG);							/* Write to Configuration register */
+	i2cMasterSend(0x00);							/* Fs = 8KHz */
 	i2cMasterStop();
 	
 	i2cMasterStart(MPU_6050_WRITE_ADDR);
-	i2cMasterSend(GYRO_CONFIG);								/* Write to Gyro configuration register */
-	i2cMasterSend(0x18);									/* Full scale range +/- 2000 degree/C */
+	i2cMasterSend(GYRO_CONFIG);						/* Write to Gyro configuration register */
+	i2cMasterSend(0x18);							/* Full scale range +/- 2000 degree/C */
 	i2cMasterStop();
 
 	i2cMasterStart(MPU_6050_WRITE_ADDR);
-	i2cMasterSend(INT_ENABLE);								/* Write to interrupt enable register */
+	i2cMasterSend(INT_ENABLE);						/* Write to interrupt enable register */
 	i2cMasterSend(0x01);
 	i2cMasterStop();
 	
@@ -60,7 +60,7 @@ void mpu6050Init(){											/* Gyro initialization function */
 void mpuStartLoc()
 {
 	i2cMasterStart(MPU_6050_WRITE_ADDR);					/* I2C start with device write address */
-	i2cMasterSend(ACCEL_XOUT_H);							/* Write start location address from where to read */
+	i2cMasterSend(ACCEL_XOUT_H);						/* Write start location address from where to read */
 	i2cMasterRepStart(MPU_6050_READ_ADDR);					/* I2C start with device read address */
 }
 
@@ -119,7 +119,7 @@ int main(void){
 		sprintf(buffer," Az = %s g\t", float_);
 		uartSendData(buffer);
 		
-		dtostrf( t, 3, 2, float_ );						/* Take values in buffer to send all parameters over USART */
+		dtostrf( t, 3, 2, float_ );					/* Take values in buffer to send all parameters over USART */
 		sprintf(buffer," t = %s%cC \t", float_, 0xF8);
 		uartSendData(buffer);
 		
