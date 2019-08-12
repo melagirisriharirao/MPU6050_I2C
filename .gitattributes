@@ -1,4 +1,2 @@
-# Auto detect text files and perform LF normalization
-* text=auto
 
-MPU6050_I2C/GccApplication1/Debug/* linguist-generated
+MPU6050_I2C/GccApplication1/Debug/* linguist-vendored
